@@ -54,7 +54,7 @@ func DisableDiegoAndCheckResponse(appName, expectedSubstring string, timeout tim
 
 func AppReport(appName string, timeout time.Duration) {
 	Eventually(cf.Cf("app", appName, "--guid"), timeout).Should(Exit())
-	Eventually(cf.Cf("logs", appName, "--recent"), timeout).Should(Exit())
+	Eventually(cf.Cf("logs", "--recent", appName), timeout).Should(Exit())
 }
 
 func RestartApp(app string, timeout time.Duration) {
