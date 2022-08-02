@@ -73,8 +73,11 @@ class Dora < Sinatra::Base
   end
 
   get '/logspew/:kbytes' do
-    kb = "1" * 1024 ;
-    params[:kbytes].to_i.times { puts kb }
+    params[:kbytes].to_i.times { |i|
+      i %= 16
+      kb = i.to_s(16) * 1024
+      puts kb
+    }
     "Just wrote #{params[:kbytes]} kbytes to the log"
   end
 
